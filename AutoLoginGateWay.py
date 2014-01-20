@@ -49,15 +49,20 @@ def internet_on():
     return False
  
 if __name__=='__main__':
-	# 获得配置文件中的信息
-	config = ConfigParser.SafeConfigParser()
-	# 读取配置文件
-	config.read(os.path.dirname(os.path.abspath(__file__)) + '/UserInfo.ini')
-	sections = config.sections()
-	# print sections
-	# 获取配置文件中的字段
-	user = config.get('Info','UserID')
-	pwd = config.get('Info','PassWord')	
+	try:
+		# 获得配置文件中的信息
+		config = ConfigParser.SafeConfigParser()
+		# 读取配置文件
+		config.read(os.path.dirname(os.path.abspath(__file__)) + '/UserInfo.ini')
+		# sections = config.sections()
+		# print sections
+		# 获取配置文件中的字段
+		user = config.get('Info','UserID')
+		pwd = config.get('Info','PassWord')	
+	except ConfigParser.NoSectionError as e:
+		print u'Error：用户信息未配置，请将您的学号和密码填入UserInfo.ini文件'
+		while True:
+			pass
 	url = 'http://wg.suda.edu.cn/indexn.aspx'
 	while True:
 		suda = Login()
