@@ -5,7 +5,7 @@ import socket
 import sys
 import time
 
-class login(object):
+class Login(object):
 	def __init__(self):
 		self.user = self.pwd = self.url = ' '
 	def setinfo(self, user, pwd, url):
@@ -50,11 +50,13 @@ if __name__=='__main__':
 	pwd = '5065125zxc'	
 	url = 'http://wg.suda.edu.cn/indexn.aspx'
 	while True:
-		suda = login()
+		suda = Login()
 		suda.setinfo(user, pwd, url)
 		if internet_on():
+			print time.strftime('INFO - [%Y-%m-%d--%H:%M:%S] - ',time.localtime(time.time())),
 			print u'网络未中断'
 		else:
+			print time.strftime('INFO - [%Y-%m-%d--%H:%M:%S] - ',time.localtime(time.time())),			
 			print u'网络已中断,正在登陆网关...'	   
 			suda.login_in()
 			print u'网关已登陆'
