@@ -33,7 +33,6 @@ class Login(object):
 		response = urllib2.urlopen(request)
 		the_page = response.read()
 		
-		
 def internet_on():
     try:
         response=urllib2.urlopen('http://115.239.210.26',timeout=3) 
