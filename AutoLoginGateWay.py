@@ -4,6 +4,9 @@ import urllib2
 import socket
 import sys
 import time
+import ConfigParser
+import os
+
 
 class Login(object):
 	def __init__(self):
@@ -46,8 +49,15 @@ def internet_on():
     return False
  
 if __name__=='__main__':
-	user = '20124227025'
-	pwd = '5065125zxc'	
+	# 获得配置文件中的信息
+	config = ConfigParser.SafeConfigParser()
+	# 读取配置文件
+	config.read(os.path.dirname(os.path.abspath(__file__)) + '/UserInfo.ini')
+	sections = config.sections()
+	# print sections
+	# 获取配置文件中的字段
+	user = config.get('Info','UserID')
+	pwd = config.get('Info','PassWord')	
 	url = 'http://wg.suda.edu.cn/indexn.aspx'
 	while True:
 		suda = Login()
