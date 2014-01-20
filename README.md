@@ -6,7 +6,7 @@
     PassWord = XXXXXX
 
 编辑好后保存关闭。
-接下来双击AutoLoginGateWay.exe运行程序即可。
+接下来运行AutoLoginGateWay.py或者双击AutoLoginGateWay.exe运行即可,程序在[这里](http://kuai.xunlei.com/d/ZmWaDoz8Ph3dUgQAef4)。
 ### 警告： ###
 *1 请在使用前确保你的网关账号和密码正确。*   
 *2 一直运行该程序可能会造成你的上网时间不够用，请先包月再使用。*  
