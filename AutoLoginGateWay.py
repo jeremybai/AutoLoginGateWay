@@ -74,4 +74,4 @@ if __name__=='__main__':
 			print u'网络已中断,正在登陆网关...'	   
 			suda.login_in()
 			print u'网关已登陆'
-		time.sleep(1)
+		time.sleep(5)
