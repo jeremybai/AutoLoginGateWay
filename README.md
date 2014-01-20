@@ -1,5 +1,5 @@
 ## 自动登录苏州大学网关脚本
-使用前将当前目录下的配置文件UserInfo.ini打开（右击-编辑），将你的网关账号和密码填写到对应的UserID和PassWord，如：
+使用前将当前目录下的配置文件UserInfo.ini打开(编辑UserInfo.ini时不要使用微软的记事本，因为它在保存的时候会加上BOM头，最好使用notepad++编辑完选择格式为UTF-8无BOM格式编码然后保存。否则程序无法运行。)，将你的网关账号和密码填写到对应的UserID和PassWord，如：
 
     #网关账号和密码
     UserID = 2012XXXXXXX
