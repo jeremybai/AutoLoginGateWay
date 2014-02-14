@@ -6,7 +6,7 @@ import sys
 import time
 import ConfigParser
 import os
-
+import getpass 
 
 class Login(object):
 	def __init__(self):
@@ -30,7 +30,19 @@ class Login(object):
 		postdata = urllib.urlencode(data)
 		# print postdata
 		request = urllib2.Request(self.url, postdata, headers)
-		response = urllib2.urlopen(request)
+		try:
+			response = urllib2.urlopen(request)
+		except urllib2.URLError as e: 
+			print u"urllib2.URLError错误" 
+			print u"网页无法打开，请检查网络是否连接。"
+			sys.exit(1)
+		except socket.error as e: 
+			type, value, traceback = sys.exc_info()[:3] 
+			if type == socket.timeout: 
+				print u"socket.timeout错误" 
+			else: 
+				print u"其他socket错误"
+			sys.exit(1)
 		the_page = response.read()
 		
 def internet_on():
@@ -39,6 +51,7 @@ def internet_on():
         return True
     except urllib2.URLError as e: 
         print u"urllib2.URLError错误" 
+        print u"网页无法打开，请检查网络是否连接。"
     except socket.error as e: 
 		type, value, traceback = sys.exc_info()[:3] 
 		if type == socket.timeout: 
@@ -48,20 +61,25 @@ def internet_on():
     return False
  
 if __name__=='__main__':
-	try:
-		# 获得配置文件中的信息
-		config = ConfigParser.SafeConfigParser()
-		# 读取配置文件
-		config.read(os.path.dirname(os.path.abspath(__file__)) + '/UserInfo.ini')
-		# sections = config.sections()
-		# print sections
-		# 获取配置文件中的字段
-		user = config.get('Info','UserID')
-		pwd = config.get('Info','PassWord')	
-	except ConfigParser.NoSectionError as e:
-		print u'Error：用户信息未配置，请将您的学号和密码填入UserInfo.ini文件'
-		while True:
-			pass
+	# try:
+		# # 获得配置文件中的信息
+		# config = ConfigParser.SafeConfigParser()
+		# # 读取配置文件
+		# config.read(os.path.dirname(os.path.abspath(__file__)) + '/UserInfo.ini')
+		# # sections = config.sections()
+		# # print sections
+		# # 获取配置文件中的字段
+		# user = config.get('Info','UserID')
+		# pwd = config.get('Info','PassWord')	
+	# except ConfigParser.NoSectionError as e:
+		# print u'Error：用户信息未配置，请将您的学号和密码填入UserInfo.ini文件'
+		# while True:
+			# pass
+	user = raw_input(u'请输入网关账号：'.encode('gb2312'))
+	# pwd = raw_input(u'请输入网关密码：'.encode('gb2312'))
+	print u'请输入网关密码：',
+	pwd = getpass.getpass('')  	
+	print  user,pwd
 	url = 'http://wg.suda.edu.cn/indexn.aspx'
 	while True:
 		suda = Login()
